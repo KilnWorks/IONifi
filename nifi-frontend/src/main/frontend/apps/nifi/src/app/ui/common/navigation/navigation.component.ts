@@ -29,7 +29,7 @@ import { selectCurrentUser } from '../../../state/current-user/current-user.sele
 import { MatButtonModule } from '@angular/material/button';
 import { NiFiState } from '../../../state';
 import { selectFlowConfiguration } from '../../../state/flow-configuration/flow-configuration.selectors';
-import { Storage, DARK_THEME, LIGHT_THEME, OS_SETTING, ThemingService } from '@nifi/shared';
+import { Storage, DARK_THEME, LIGHT_THEME, OS_SETTING, ThemingService, IOVALENCE_THEME } from '@nifi/shared';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { loadFlowConfiguration } from '../../../state/flow-configuration/flow-configuration.actions';
 import {
@@ -67,6 +67,7 @@ export class Navigation implements OnInit, OnDestroy {
     darkModeOn: boolean | undefined;
     LIGHT_THEME: string = LIGHT_THEME;
     DARK_THEME: string = DARK_THEME;
+    IOVALENCE_THEME: string = IOVALENCE_THEME;
     OS_SETTING: string = OS_SETTING;
     disableAnimations: string | null;
 
@@ -148,6 +149,7 @@ export class Navigation implements OnInit, OnDestroy {
     }
 
     toggleTheme(theme: string) {
+        console.log('navigation.component.html toggleTheme', theme, this.darkModeOn);
         this.theme = theme;
         this.storage.setItem('theme', theme);
         this.themingService.toggleTheme(!!this.darkModeOn, theme);

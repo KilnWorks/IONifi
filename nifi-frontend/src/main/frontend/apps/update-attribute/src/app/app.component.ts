@@ -16,7 +16,7 @@
  */
 
 import { Component } from '@angular/core';
-import { Storage, ThemingService } from '@nifi/shared';
+import { IOVALENCE_THEME, Storage, ThemingService } from '@nifi/shared';
 
 @Component({
     selector: 'app',
@@ -33,6 +33,11 @@ export class AppComponent {
     ) {
         let theme = this.storage.getItem('theme');
 
+        if (!theme) {
+            theme = IOVALENCE_THEME;
+            this.storage.setItem('theme', theme);
+        }
+
         // Initially check if dark mode is enabled on system
         const darkModeOn = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -43,6 +48,7 @@ export class AppComponent {
             // Watch for changes of the preference
             window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
                 theme = this.storage.getItem('theme');
+                console.log('app.component.ts update', theme, e.matches, darkModeOn);
                 this.themingService.toggleTheme(e.matches, theme);
             });
         }

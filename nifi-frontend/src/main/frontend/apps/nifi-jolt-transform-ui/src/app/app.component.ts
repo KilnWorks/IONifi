@@ -16,7 +16,7 @@
  */
 
 import { Component } from '@angular/core';
-import { Storage, ThemingService } from '@nifi/shared';
+import { IOVALENCE_THEME, Storage, ThemingService } from '@nifi/shared';
 
 @Component({
     selector: 'nifi-jolt-transform-json-ui',
@@ -32,6 +32,11 @@ export class AppComponent {
         private themingService: ThemingService
     ) {
         let theme = this.storage.getItem('theme');
+
+        if (!theme) {
+            theme = IOVALENCE_THEME;
+            this.storage.setItem('theme', theme);
+        }
 
         // Initially check if dark mode is enabled on system
         const darkModeOn = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;

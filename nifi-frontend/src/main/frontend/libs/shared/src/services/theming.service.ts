@@ -20,6 +20,7 @@ import { DOCUMENT } from '@angular/common';
 
 export const DARK_THEME = 'DARK_THEME';
 export const LIGHT_THEME = 'LIGHT_THEME';
+export const IOVALENCE_THEME = 'IOVALENCE_THEME';
 export const OS_SETTING = 'OS_SETTING';
 
 @Injectable({ providedIn: 'root' })
@@ -27,22 +28,35 @@ export class ThemingService {
     constructor(@Inject(DOCUMENT) private _document: Document) {}
 
     toggleTheme(darkModeOn: boolean, theme: any) {
-        if (darkModeOn) {
-            if (theme === DARK_THEME) {
-                this._document.body.classList.toggle('darkMode', true);
-            } else if (theme === LIGHT_THEME) {
-                this._document.body.classList.toggle('darkMode', false);
-            } else {
-                this._document.body.classList.toggle('darkMode', true);
-            }
+        console.log('theme:', theme, 'dark-on', darkModeOn);
+        // if (darkModeOn) {
+        //     if (theme === DARK_THEME) {
+        //         this._document.body.classList.toggle('darkMode', true);
+        //         this._document.body.classList.toggle('ioValence', false);
+        //     } else if (theme === LIGHT_THEME) {
+        //         this._document.body.classList.toggle('darkMode', false);
+        //         this._document.body.classList.toggle('ioValence', false);
+        //     } else if (theme === IOVALENCE_THEME) {
+        //         this._document.body.classList.toggle('darkMode', false);
+        //         this._document.body.classList.toggle('ioValence', false);
+        //     } else {
+        //         this._document.body.classList.toggle('darkMode', true);
+        //         this._document.body.classList.toggle('ioValence', false);
+        //     }
+        // } else {
+        if (theme === DARK_THEME) {
+            this._document.body.classList.toggle('darkMode', true);
+            this._document.body.classList.toggle('ioValence', false);
+        } else if (theme === LIGHT_THEME) {
+            this._document.body.classList.toggle('darkMode', false);
+            this._document.body.classList.toggle('ioValence', false);
+        } else if (theme === IOVALENCE_THEME) {
+            this._document.body.classList.toggle('darkMode', false);
+            this._document.body.classList.toggle('ioValence', true);
         } else {
-            if (theme === DARK_THEME) {
-                this._document.body.classList.toggle('darkMode', true);
-            } else if (theme === LIGHT_THEME) {
-                this._document.body.classList.toggle('darkMode', false);
-            } else {
-                this._document.body.classList.toggle('darkMode', false);
-            }
+            this._document.body.classList.toggle('darkMode', false);
+            this._document.body.classList.toggle('ioValence', false);
         }
+        // }
     }
 }

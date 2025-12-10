@@ -181,6 +181,15 @@
                             }
                             Dark
                         </button>
+                        <button mat-menu-item class="global-menu-item" (click)="toggleTheme(IOVALENCE_THEME)">
+                            @if (theme === IOVALENCE_THEME) {
+                                <i class="fa fa-check primary-color mr-2"></i>
+                            }
+                            @if (theme !== IOVALENCE_THEME) {
+                                <i class="fa mr-2"></i>
+                            }
+                            IO Valence
+                        </button>
                         <button mat-menu-item class="global-menu-item" (click)="toggleTheme(OS_SETTING)">
                             @if (theme === OS_SETTING || theme === null) {
                                 <i class="fa fa-check primary-color mr-2"></i>

@@ -25,7 +25,7 @@ import {
     Router
 } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Storage, ThemingService } from '@nifi/shared';
+import { IOVALENCE_THEME, Storage, ThemingService } from '@nifi/shared';
 import { MatDialog } from '@angular/material/dialog';
 import { NiFiState } from './state';
 import { Store } from '@ngrx/store';
@@ -103,6 +103,11 @@ export class AppComponent implements OnDestroy {
             });
 
         let theme = this.storage.getItem('theme');
+
+        if (!theme) {
+            theme = IOVALENCE_THEME;
+            this.storage.setItem('theme', theme);
+        }
 
         // Initially check if dark mode is enabled on system
         const darkModeOn = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
